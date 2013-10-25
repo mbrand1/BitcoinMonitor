@@ -26,6 +26,7 @@ public class D30 {
     public static final int MTGOX = 0;
     public static final int BITSTAMP = 1;
     public static final int BTCE = 2;
+    public static final int CAMPBX = 3;
 
     public static final String USD = "USD";
     public static final String EUR = "EUR";

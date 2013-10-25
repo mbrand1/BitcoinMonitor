@@ -156,6 +156,7 @@ public class BitoinDashService extends DashClockExtension {
         switch( source ) {
             case D30.BTCE: return "https://btc-e.com/api/2/btc_" + currency.toLowerCase() + "/ticker";
             case D30.BITSTAMP: return "https://www.bitstamp.net/api/ticker/";
+            case D30.CAMPBX: return "http://campbx.com/api/xticker.php";
             default:
             case D30.MTGOX: return "https://data.mtgox.com/api/1/BTC" + currency.toUpperCase() + "/ticker";
         }
@@ -183,6 +184,7 @@ public class BitoinDashService extends DashClockExtension {
             case D30.MTGOX: return getFromMtgox( j );
             case D30.BITSTAMP: return getFromBitstamp( j );
             case D30.BTCE: return getFromBtce( j );
+            case D30.CAMPBX: return getFromCampbx( j );
             default: return null;
         }
     }
@@ -251,6 +253,9 @@ public class BitoinDashService extends DashClockExtension {
         j = D30.Json.getObject(j, "ticker");
         return j!=null ? D30.Json.getString(j, "last") : null;
     }
+    protected static String getFromCampbx(JsonObject j) {
+        return D30.Json.getString(j, "Last Trade");
+    }
 
     protected static String getSourceName(int source, boolean pretty) {
         switch( source ) {
@@ -258,6 +263,7 @@ public class BitoinDashService extends DashClockExtension {
             case D30.MTGOX: return pretty ? "Mt.Gox" : "mtgox";
             case D30.BTCE: return pretty ? "BTC-e" : "btce";
             case D30.BITSTAMP: return pretty? "Bitstamp" : "bitstamp";
+            case D30.CAMPBX: return pretty? "CampBX" : "campbx";
         }
     }
     protected static String getSourceName(int source) { return getSourceName(source, true); }
