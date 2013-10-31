@@ -179,7 +179,7 @@ public class BitcoinDashConf extends PreferenceActivity {
         }
 
         private void adjustCurrencies(int source) {
-            if( source==D30.BITSTAMP) {
+            if( source==D30.BITSTAMP || source==D30.CAMPBX ) {
                 currency.setValue( D30.DEF_CURRENCY );
                 currency.setEnabled(false);
                 currency.setSummary(R.string.currency_summary_not_supported);
