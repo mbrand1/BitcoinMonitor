@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pl.d30.bitcoin"
-    android:versionCode="20"
-    android:versionName="1.5.2" >
+    android:versionCode="25"
+    android:versionName="1.6.2" >
 
     <uses-sdk
         android:minSdkVersion="17"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,11 +17,10 @@
         android:theme="@style/AppTheme" >
 
 
-
-        <!-- DashClock extension BTC -->
-        <service android:name=".dash.service.BitoinDashService"
-            android:icon="@drawable/icon_small"
-            android:label="@string/bitcoin_label"
+        <!-- DashClock BTC Monitor extension -->
+        <service android:name=".dash.service.BitcoinMonitorDashService"
+            android:icon="@drawable/ic_btc"
+            android:label="@string/monitor_btc_label"
             android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
 
             <intent-filter>
@@ -34,23 +33,28 @@
 
             <meta-data
                 android:name="description"
-                android:value="@string/dashclock_desc" />
+                android:value="@string/monitor_desc" />
+
+            <meta-data
+                android:name="worldReadable"
+                android:value="true" />
 
             <meta-data
                 android:name="settingsActivity"
-                android:value=".dash.conf.BitcoinDashConf" />
+                android:value=".dash.conf.BitcoinMonitorDashConf" />
 
         </service>
-        <activity android:name=".dash.conf.BitcoinDashConf"
-            android:label="@string/bitcoin_label"
+        <activity android:name=".dash.conf.BitcoinMonitorDashConf"
+            android:label="@string/monitor_btc_label"
+            android:icon="@drawable/ic_btc"
             android:exported="true" />
 
 
 
-        <!-- DashClock extension LTC -->
-        <service android:name=".dash.service.LitecoinDashService"
-            android:icon="@drawable/icon_small_ltc"
-            android:label="@string/litecoin_label"
+        <!-- DashClock LTC Monitor extension  -->
+        <service android:name=".dash.service.LitecoinMonitorDashService"
+            android:icon="@drawable/ic_ltc"
+            android:label="@string/monitor_ltc_label"
             android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
 
             <intent-filter>
@@ -63,18 +67,69 @@
 
             <meta-data
                 android:name="description"
-                android:value="@string/dashclock_desc" />
+                android:value="@string/monitor_desc" />
+
+            <meta-data
+                android:name="worldReadable"
+                android:value="true" />
 
             <meta-data
                 android:name="settingsActivity"
-                android:value=".dash.conf.LitecoinDashConf" />
+                android:value=".dash.conf.LitecoinMonitorDashConf" />
 
         </service>
-        <activity android:name=".dash.conf.LitecoinDashConf"
-            android:label="@string/litecoin_label"
+        <activity android:name=".dash.conf.LitecoinMonitorDashConf"
+            android:label="@string/monitor_ltc_label"
+            android:icon="@drawable/ic_ltc"
             android:exported="true" />
 
 
+
+        <!-- DashClock BTC Arbitrage Monitor -->
+        <service android:name=".dash.service.BitcoinArbitrageDashService"
+            android:icon="@drawable/ic_arbitrage"
+            android:label="@string/arbitrage_btc_label"
+            android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
+
+            <intent-filter>
+                <action android:name="com.google.android.apps.dashclock.Extension" />
+            </intent-filter>
+
+            <meta-data
+                android:name="protocolVersion"
+                android:value="2" />
+
+            <meta-data
+                android:name="description"
+                android:value="@string/arbitrage_desc" />
+
+            <meta-data
+                android:name="worldReadable"
+                android:value="true" />
+
+            <meta-data
+                android:name="settingsActivity"
+                android:value=".dash.conf.BitcoinArbitrageDashConf" />
+
+        </service>
+        <activity android:name=".dash.conf.BitcoinArbitrageDashConf"
+            android:icon="@drawable/ic_btc"
+            android:label="@string/arbitrage_btc_label"
+            android:exported="true" />
+
+
+
+        <activity android:name=".dash.conf.NotificationsConf"
+            android:icon="@drawable/ic_notice_blue"
+            android:label="@string/notifications_label"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="dashcoin.intent.action.CONFIGURE_NOTIFICATIONS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
 
     </application>
 
